@@ -6,7 +6,7 @@ public class MyTriangle {
     private MyPoint v3;
 
     public MyTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
-        if (CheckNotExistence(new MyPoint(x1 ,y1), new MyPoint(x2, y2), new MyPoint(x3, y3)))
+        if (CheckNotExistence(new MyPoint(x1, y1), new MyPoint(x2, y2), new MyPoint(x3, y3)))
             throw new IllegalArgumentException("This triangle does not exist");
         v1 = new MyPoint(x1, y1);
         v2 = new MyPoint(x2, y2);
@@ -16,7 +16,7 @@ public class MyTriangle {
 
 
     public MyTriangle(MyPoint v1, MyPoint v2, MyPoint v3) throws IllegalArgumentException {
-        if (CheckNotExistence(v1, v2 ,v3)) throw new IllegalArgumentException("This triangle does not exist");
+        if (CheckNotExistence(v1, v2, v3)) throw new IllegalArgumentException("This triangle does not exist");
         this.v1 = v1;
         this.v2 = v2;
         this.v3 = v3;
@@ -26,6 +26,26 @@ public class MyTriangle {
         return v1.distance(v2) >= v2.distance(v3) + v3.distance(v1) ||
                 v2.distance(v3) >= v3.distance(v1) + v1.distance(v2) ||
                 v3.distance(v1) >= v1.distance(v2) + v2.distance(v3);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MyTriangle triangle = (MyTriangle) o;
+
+        if (!v1.equals(triangle.v1)) return false;
+        if (!v2.equals(triangle.v2)) return false;
+        return v3.equals(triangle.v3);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = v1.hashCode();
+        result = 31 * result + v2.hashCode();
+        result = 31 * result + v3.hashCode();
+        return result;
     }
 
     @Override

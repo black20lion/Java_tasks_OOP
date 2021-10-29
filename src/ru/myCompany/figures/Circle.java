@@ -34,6 +34,27 @@ public class Circle {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Circle circle = (Circle) o;
+
+        if (Double.compare(circle.radius, radius) != 0) return false;
+        return color.equals(circle.color);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(radius);
+        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + color.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Circle[" +
                 "radius=" + radius +
