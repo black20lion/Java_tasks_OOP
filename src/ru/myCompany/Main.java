@@ -85,6 +85,17 @@ public class Main {
 
         System.out.println("===================");
 
+        MyPoint pointDNE1 = new MyPoint(2, 2);
+        MyPoint pointDNE2 = new MyPoint(3, 3);
+        MyPoint pointDNE3 = new MyPoint(4,4);
+        System.out.println(pointDNE1.distance(pointDNE2));
+        System.out.println(pointDNE2.distance(pointDNE3));
+        System.out.println(pointDNE3.distance(pointDNE1));
+        System.out.println(pointDNE1.distance(pointDNE2) + pointDNE2.distance(pointDNE3));
+
+        MyTriangle doesNotExist = new MyTriangle(pointDNE1, pointDNE2, pointDNE3);
+        System.out.println(doesNotExist);
+
         MyTriangle triangle1 = new MyTriangle(point1, point2, point3);
         System.out.println(triangle1);
         System.out.println(triangle1.getPerimeter());
